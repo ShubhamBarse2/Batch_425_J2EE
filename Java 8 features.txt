@@ -1,0 +1,242 @@
+Java 8 features : 
+
+1. Lambda Expression : 
+
+Lambda expression is used to provide implementation of functional interface (interface with only one abstract method).
+It reduces boilerplate code.
+
+syntax : 
+(parameters) -> { body }
+
+example : 
+
+interface Demo {
+    void show();
+}
+
+class Test {
+    public static void main(String[] args) {
+        Demo d = () -> System.out.println("Hello");
+        d.show();
+    }
+}
+
+
+
+
+2 . Functional Interface : 
+
+An interface with only one abstract method.
+Use @FunctionalInterface annotation (optional but recommended)
+
+ref code : 
+
+@FunctionalInterface
+interface Add {
+    int sum(int a, int b);
+}
+
+class Test {
+    public static void main(String[] args) {
+        Add obj = (a, b) -> a + b;
+        System.out.println(obj.sum(10, 20));
+    }
+}
+
+
+
+3. Stream API : 
+
+Stream API is used to process data (filter, sort, map) in a clean way.
+Works on collections like ArrayList  
+
+ref code : 
+
+import java.util.*;
+
+class Test {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(5);
+        list.add(20);
+        list.add(15);
+
+        list.stream()
+            .filter(x -> x > 10)
+            .forEach(x -> System.out.println(x));
+    }
+}
+
+
+
+4.  forEach() Method : 
+
+Used to iterate collection easily. : 
+
+ref code : 
+
+import java.util.*;
+
+class Test {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("Python");
+
+        list.forEach(x -> System.out.println(x));
+    }
+}
+
+
+5. Method Reference : 
+
+Shortcut of lambda expression using ::  -> 
+
+ref code : 
+
+import java.util.*;
+
+class Test {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+
+        list.forEach(System.out::println);
+    }
+}	
+
+
+6. Optional Class : 
+Used to avoid NullPointerException  -> 
+
+ref code : 
+
+import java.util.Optional;
+
+class Test {
+    public static void main(String[] args) {
+        Optional<String> name = Optional.ofNullable(null);
+
+        System.out.println(name.orElse("Default Value"));
+    }
+}
+
+
+
+7. Default Method (Interface) : 
+
+Interface can have method with body : 
+
+ref code : 
+
+interface Demo {
+    default void show() {
+        System.out.println("Default method");
+    }
+}
+
+class Test implements Demo {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.show();
+    }
+}
+
+
+8. Static Method in Interface : 
+
+Interface can have static methods  -> 
+
+ref code : 
+
+interface Demo {
+    static void display() {
+        System.out.println("Static method");
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Demo.display();
+    }
+}
+
+
+9. Date & Time API : 
+
+New API to handle date and time easily -> 
+
+ref code : 
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+class Test {
+    public static void main(String[] args) {
+        System.out.println(LocalDate.now());
+        System.out.println(LocalTime.now());
+    }
+}
+
+
+10. Predicate (Functional Interface) -> 
+Used for condition checking (true/false)
+11. Consumer Interface -> 
+Takes input, returns nothing
+12. Supplier Interface ->
+Returns value, no input
+13. Function Interface -> 
+Takes input and returns output
+
+ref code of all Interfaces :  
+
+
+import java.util.function.Predicate;
+
+class Test {
+    public static void main(String[] args) {
+        Predicate<Integer> p = x -> x > 10;
+
+        System.out.println(p.test(5));   // false
+        System.out.println(p.test(20));  // true
+    }
+}
+
+import java.util.function.Consumer;
+
+class Test {
+    public static void main(String[] args) {
+        Consumer<String> c = x -> System.out.println(x);
+
+        c.accept("Hello Java 8");
+    }
+}
+
+import java.util.function.Supplier;
+
+class Test {
+    public static void main(String[] args) {
+        Supplier<String> s = () -> "Hello";
+
+        System.out.println(s.get());
+    }
+}
+
+
+import java.util.function.Function;
+
+class Test {
+    public static void main(String[] args) {
+        Function<Integer, Integer> f = x -> x * x;
+
+        System.out.println(f.apply(5));
+    }
+}
+
+
+
+
+
+
