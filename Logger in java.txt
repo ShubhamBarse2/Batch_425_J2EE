@@ -1,0 +1,90 @@
+Logger in java : 
+
+Logger is used to record messages (logs) while program is running.
+
+Instead of using: -> 
+System.out.println("Error");
+
+
+We use Logger because:
+
+Better debugging
+Maintain logs (file / console)
+Different log levels
+Used in real-time projects
+
+
+
+Logging Levels
+Level	Meaning
+SEVERE	Serious error
+WARNING	Warning message
+INFO	Normal information
+CONFIG	Configuration details
+FINE	Debug info
+FINER	More detailed
+FINEST	Very detailed
+
+Default level = INFO
+
+
+
+
+ref code : 
+
+
+import java.util.logging.Logger;
+
+class Test {
+    public static void main(String[] args) {
+
+        Logger log = Logger.getLogger("MyLogger");
+
+        log.info("Program started");
+        log.warning("This is warning");
+        log.severe("This is error");
+
+    }
+}
+
+
+Output :
+INFO: Program started
+WARNING: This is warning
+SEVERE: This is error 
+
+
+
+import java.util.logging.Logger;
+
+class Test {
+    public static void main(String[] args) {
+
+        Logger log = Logger.getLogger("App");
+
+        int a = 10;
+        int b = 0;
+
+        log.info("Starting division");
+
+        try {
+            int c = a / b;
+            log.info("Result: " + c);
+        } catch (Exception e) {
+            log.severe("Error occurred: " + e);
+        }
+
+        log.info("Program ended");
+    }
+}
+
+
+Logger is better than System.out.println -> 
+
+Used in real projects
+Helps in debugging
+Can store logs in file
+Supports log levels
+
+
+
